@@ -1,3 +1,5 @@
+import math
+
 def digits():
     print("Enter 5 digits number:")
     digit = int(input())
@@ -192,4 +194,58 @@ def loops():
         for i in range(4):
             print('[]', end='')
 
-loops()
+def wordsInPiecesExercise():
+    word = input("Input word: ")
+    if not word.isalpha():
+        print('Input alphabets only')
+        return
+    
+    for i in range(1,len(word)+1):
+        for j in range(len(word)):
+            if i+j <= len(word):
+                print(word[j:i+j])
+
+def lineNumbersLab():
+    terminated = False
+    total = 0
+    min = math.inf
+    max = -math.inf
+    even = 0
+    odd = 0
+    while(not terminated):
+        inputString = input("Enter a number: ")
+        if inputString.isnumeric():
+            num = int(inputString)
+            total += num
+            min = num if num <= min else min
+            max = num if num >= max else max
+            even = even + 1 if num % 2 == 0 else even
+            odd = odd + 1 if num % 2 != 0 else odd
+            print('Total='+str(total), 'Min='+str(min), 'Max='+str(max), 'Even='+str(even), 'Odd='+str(odd))
+        else:
+            terminated = True
+
+def parsingStringLab():
+    sentence = input("Input a sentence: ")
+    upper = ''
+    even = ''
+    noVowels = ''
+    digits = 0
+    vowelPosition = []
+    for i,char in enumerate(sentence):
+        if char.isupper():
+            upper += char
+        if i % 2 == 0:
+            even += char
+        if char in 'aiueoAIUEO':
+            noVowels += '_'
+            vowelPosition.append(i)
+        else:
+            noVowels += char
+        if char.isdigit():
+            digits += 1
+    print('Upper='+upper)
+    print('Even='+even)
+    print('No Vowels='+noVowels)
+    print('Digits=', digits) 
+    print('Vowel Positions', vowelPosition)
