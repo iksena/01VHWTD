@@ -149,4 +149,47 @@ def grades():
 
     print(str(finalGrade))
 
-grades()
+def duplicateNumbersExercise():
+    inputString = input("Enter a line of numbers: ")
+    temp = -1
+    duplicates = []
+    for num in inputString:
+        num = int(num)
+        if(temp == num and (num not in duplicates)):
+            duplicates.append(num)
+        temp = num
+
+    print(' '.join([str(i) for i in duplicates]))
+
+# duplicateNumbersExercise()
+# 1334556663
+
+def loops():
+    print([i for i in range(5)])
+    print([i for i in range(1,6)])
+    print([i for i in range(1,11,2)])
+    print([i for i in range(5,0,-1)])
+    print([str(i)+name for (i,name) in enumerate(['sena', 'aji', 'buwana'])])
+    print([str(i)+name for (i,name) in enumerate('ikomangsena')])
+
+    # for i in range(1,5):
+    #     print('x^%d' % i)
+    #     for x in range(1,11):
+    #         print(str(x**i))
+    #     print('\t')
+    
+    for i in range(1,5):
+        print('x^%d' %i, end='\t')
+
+    for x in range(1,11): #row
+        print('')
+        for i in range(1,5): #column
+            p = (x**i)
+            print(str(p), end='\t')
+    
+    for x in range(4): 
+        print('')
+        for i in range(4):
+            print('[]', end='')
+
+loops()
