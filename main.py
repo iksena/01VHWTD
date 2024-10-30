@@ -249,3 +249,87 @@ def parsingStringLab():
     print('No Vowels='+noVowels)
     print('Digits=', digits) 
     print('Vowel Positions', vowelPosition)
+
+from random import random, randint
+
+def randomLesson():
+    print(random())
+    print(randint(1,6))
+
+def atTheCinemaLab5():
+    tickets = 10
+    buyers = 0
+    while tickets > 0:
+        buyTickets = input("How many tickets are you going to buy? ")
+        if not buyTickets.isdigit():
+            print("Only input numbers")
+            continue
+        else:
+            buyTickets = int(buyTickets)
+        
+        if buyTickets <= 4 and tickets >= buyTickets:
+            tickets -= buyTickets
+            buyers += 1
+            print("Remaining tickets: %d, Buyers: %d" % (tickets, buyers))
+        else:
+            print("Not enough tickets or tickets cannot exceed 4")
+            print("Remaining tickets: %d" % tickets)
+    print("Sold out")
+
+## Add an article to country names
+# @param country {string} - the country word
+# @return {string} - new string with an article before the country's word
+def nomsDePays(country):
+    if country in 'États-Unis Pays-Bas':
+        return 'les ' + country
+    if country in 'Belize Cambodge Mexique Mozambique Zaïre Zimbabwe':
+        return 'le ' + country
+
+    wordLength = len(country)
+    lastChar = country[wordLength-1]
+    if lastChar in 'eEèÈéÉ':
+        return 'la ' + country
+    
+    firstChar = country[0]
+    if firstChar in 'aiueoAIUEO':
+        return 'l\'' + country
+    
+    return 'le ' + country
+
+def Lab5_nomsDePaysExercise():
+    countries = ['Afghanistan', 'Belize', 'Belgique', 'Cambodge', 'Canada', 'Mexique', 'Mozambique', 'Zaïre', 'Zimbabwe', 'États-Unis', 'Pays-Bas']
+    for country in countries:
+        print(nomsDePays(country))
+    
+def blackjack():
+    computer = randint(1,10)
+    user = randint(1,10) + randint(1,10)
+    print('Your cards: %d' % user)
+    
+    isDeal = input('Deal? (y/n): ')
+    while isDeal == 'y':
+        newCard = randint(1,10)
+        print('New card %d' % newCard) 
+        user += newCard
+        print('Your cards: %d' % user)
+        if user > 21:
+            print('You lose')
+            return
+        else:
+            isDeal = input('Deal? (y/n): ')
+    
+    while computer < 17 and user < 21:
+        newCard = randint(1,10)
+        print('New card for computer %d' % newCard)
+        computer += newCard
+        print('Computer cards: %d' % computer)
+        if computer > 21:
+            print('Computer loses')
+            return
+
+    if user > computer:
+        print('You win')
+    else:
+        print('Computer win')
+
+blackjack()
