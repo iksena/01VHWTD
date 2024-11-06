@@ -332,4 +332,53 @@ def blackjack():
     else:
         print('Computer win')
 
-blackjack()
+def defineWords(number, length, remainingNumber): 
+    numberWords = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+    tenWords = ['zero', 'one', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+    teenWords = ['', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
+    num = int(number)
+    if(length == 4):
+        return f'{numberWords[num]} thousand '
+    if(length == 3):
+        return f'{numberWords[num]} hundred '
+    if(length == 2):
+        if(num == 1):
+            teen = int(remainingNumber[-1])
+            return f'{teenWords[teen]}'
+        return f'{tenWords[num]} '
+    if(length == 1):
+        return f'{numberWords[num]}'
+    return number
+
+def price(money):
+    text = ''
+    for i, number in enumerate(money):
+        length = len(money[i:len(money)])
+        text += defineWords(number, length, money[i:len(money)])
+        if(length == 2 and number == '1'):
+            return text
+    return text
+
+def spellMoney():
+    money = input("Input money: ")
+    [first, last] = money.split('$')[1].split('.')
+    print(first, last)
+    print(f'{price(first)} dollars and {price(last)} cents')
+    print()
+
+spellMoney()
+
+def diameter(n):
+    return 0.127 * (92 ** ((36 - n) / 39))
+
+def copper_wire_resistance(length, n):
+    copperResistivity = 1.678 * (10 ** (-8))
+    diameterInMeter = diameter(n) / 1000
+    
+    return (4 * copperResistivity * length) / (math.pi * (diameterInMeter ** 2))
+
+def aluminum_wire_resistance(length, n):
+    aluminumResistivity = 2.82 * (10 ** (-8))
+    diameterInMeter = diameter(n) / 1000
+    
+    return (4 * aluminumResistivity * length) / (math.pi * (diameterInMeter ** 2))
